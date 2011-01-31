@@ -12,8 +12,18 @@ public class Pstring{
 
 
 	public ArrayList<String> generateList(String scheme){
+		while(scheme.lenght>0){
+			if(res = (str =~ /\d+/)){
+				//TODO			
+			}	
+			if( res = (str =~ /[a-zA-Z]+/) ){
+				//TODO
+			}
+				
+		}
+		//TODO
 
-		
+			
 		
 	}
 	
