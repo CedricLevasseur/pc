@@ -16,17 +16,18 @@ public class Pstring{
 		def firstMatcher
 		while(scheme.length()>0){
 			def res= scheme =~ /^\d+/
-			if (res) firstMatcher = res.getAt(0) 
-			println firstMatcher
-			if(firstMatcher)
-				scheme=scheme.replace(firstMatcher,"")
-
-			res = (scheme =~ /^[a-zA-Z]+/) 
-			if(res) firstMatcher = res.getAt(0) 
-			println firstMatcher
-			if(firstMatcher)
+			if (res) {
+				firstMatcher = res.getAt(0) 
 				scheme=scheme.replace(firstMatcher,"")
 			}
+
+			res = (scheme =~ /^[a-zA-Z]+/) 
+			if(res) { 
+				firstMatcher = res.getAt(0) 
+				scheme=scheme.replace(firstMatcher,"")
+			}
+			println scheme
+		}
 				
 		//TODO
 		return null
