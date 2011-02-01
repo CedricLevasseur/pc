@@ -12,19 +12,31 @@ public class Pstring{
 
 
 	public ArrayList<String> generateList(String scheme){
-		while(scheme.lenght>0){
-			if(res = (str =~ /\d+/)){
-				//TODO			
-			}	
-			if( res = (str =~ /[a-zA-Z]+/) ){
-				//TODO
+		//StringBuffer res
+		def firstMatcher
+		while(scheme.length()>0){
+			def res= scheme =~ /^\d+/
+			if (res) firstMatcher = res.getAt(0) 
+			println firstMatcher
+			if(firstMatcher)
+				scheme=scheme.replace(firstMatcher,"")
+
+			res = (scheme =~ /^[a-zA-Z]+/) 
+			if(res) firstMatcher = res.getAt(0) 
+			println firstMatcher
+			if(firstMatcher)
+				scheme=scheme.replace(firstMatcher,"")
 			}
 				
-		}
 		//TODO
-
+		return null
 			
 		
+	}
+
+	public static void main(String[] args){
+		Pstring p=new Pstring()
+		p.generateList("toto12titi45tutu67")
 	}
 	
 	public List<String> variationNumber(Integer number,variation){
