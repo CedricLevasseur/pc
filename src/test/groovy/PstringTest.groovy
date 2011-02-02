@@ -1,10 +1,10 @@
 import groovy.util.GroovyTestCase;
 
-class PasswordTest extends GroovyTestCase{
+class PstringTest extends GroovyTestCase{
 
 	public void testVariationSpecialCher(){
 
-	Password p1 = new Password()
+	Pstring p1 = new Pstring()
 	ArrayList<String> r1 = new ArrayList<String>()
 	r1=p1.variationSpecialChar()
 	assert r1.size() == p1.specialChar.length		
@@ -12,7 +12,7 @@ class PasswordTest extends GroovyTestCase{
 	}
 	public void testVariationNumber(){
 
-	Password p1 = new Password()
+	Pstring p1 = new Pstring()
 	ArrayList<String> r1 = new ArrayList<String>()
 	r1=p1.variationNumber(23,p1.VARIATION_NUMBER)
 	assert r1.size() == p1.VARIATION_NUMBER
@@ -21,4 +21,11 @@ class PasswordTest extends GroovyTestCase{
 		assert i in r1		
 	}*/
 	}
+
+	public void testCapitalize(){
+	Pstring word=new Pstring()
+	assert word.capitalize("cédric") == "Cédric"
+	}
+
+}
 }
