@@ -3,8 +3,9 @@ public class Pstring{
 
 	public static Integer VARIATION_NUMBER = 5
 
-	//public static char[] specialChar = { '!','%','$','*','@','#'  } 
-	public static char[] specialChar = [ 'a','b','c','d','e','f'  ] 
+	//public static String[] specialChar={"","!","%","$","*","@","#"}
+	//public static String[] specialChar=['','a','b','c','d','e','f']
+	public static String[] specialChar=["a"]
 
 	ArrayList<String> listOfPstring
 
@@ -23,7 +24,7 @@ public class Pstring{
 				firstMatcher = res.getAt(0) 
 				Integer number=Integer.parseInt(firstMatcher)	
 				scheme=scheme.replace(firstMatcher,"")
-				toReturn.addAll(variationNumber(number,5))	
+				//toReturn.addAll(variationNumber(number,5))	
 				toReturn.mix(variationNumber(number,5))	
 			}
 
@@ -33,19 +34,23 @@ public class Pstring{
 				scheme=scheme.replace(firstMatcher,"")
 				toReturn.mix(variationWord(firstMatcher))	
 			}
-			println scheme
+			//println scheme
+			toReturn.mix(variationSpecialChar())
+
 		}
+
 				
 		//TODO
 		return toReturn
-			
-		
 	}
 
 	public static void main(String[] args){
 		Pstring p=new Pstring()
-		ArrayList<String> list=p.generateList("toto12titi45tutu67")
+		def file=new File('src/main/ressources/in.txt')
+		ArrayList<String> list = new ArrayList<String>()
+		file.eachLine{ String it ->  list.add(p.generateList(it)) }
 		println list
+		println list.size()
 	}
 	
 	public List<String> variationNumber(Integer number,variation){
@@ -78,6 +83,7 @@ public class Pstring{
 		return toReturn 
 	
 	}
+
 
 }
 

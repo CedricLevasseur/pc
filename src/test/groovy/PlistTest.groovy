@@ -1,22 +1,37 @@
 import groovy.util.GroovyTestCase;
 
-class PasswordListTest extends GroovyTestCase{
+class PlistTest extends GroovyTestCase{
 
 	public void testMix(){
 
-	PasswordList<String> p1 = new PasswordList<String>()
+	Plist<String> p0 = new Plist<String>()
+	Plist<String> p1 = new Plist<String>()
 	p1.add("a")
 	p1.add("b")
-	PasswordList<String> p2 = new PasswordList<String>()
+	Plist<String> p2 = new Plist<String>()
 	p2.add("1")
 	p2.add("2")
-	
-	p1.mix(p2)
-	assert p1.size() == 4
-	assert p1.contains("a1")
-	assert p1.contains("a2")
-	assert p1.contains("b1")
-	assert p1.contains("b2")
+	assert p1.size() >= 0
+	Plist<String> p3 = new Plist<String>()
+	p3.add("c")
+	p3.add("d")
 
+	p0.mix(p1)
+	assert p0 == p1	
+	
+
+	p1.mix(p2)
+	p1.mix(p3)
+	assert p1.size() == 8
+	assert p1.contains("a1c")
+	assert p1.contains("a2c")
+	assert p1.contains("b1c")
+	assert p1.contains("b2c")
+	assert p1.contains("a1d")
+	assert p1.contains("a2d")
+	assert p1.contains("b1d")
+	assert p1.contains("b2d")
+
+	println p1
 	}
 }
