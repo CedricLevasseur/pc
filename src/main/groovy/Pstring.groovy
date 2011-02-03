@@ -3,9 +3,9 @@ public class Pstring{
 
 	public static Integer VARIATION_NUMBER = 5
 
-	//public static String[] specialChar={"","!","%","$","*","@","#"}
+	public static String[] specialChar=['','!','%','$','*','@','#']
 	//public static String[] specialChar=['','a','b','c','d','e','f']
-	public static String[] specialChar=["a"]
+	//public static String[] specialChar=["a"]
 
 	ArrayList<String> listOfPstring
 
