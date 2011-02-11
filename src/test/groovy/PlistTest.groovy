@@ -34,4 +34,19 @@ class PlistTest extends GroovyTestCase{
 
 	println p1
 	}
+
+	public void testMagimix(){
+		assert true == true
+	}
+
+	public void testRecurse(){
+		assert Plist.recurse(["A", "B", "C"]) == "CBA"
+		println Plist.recurse(["A","B","C"])
+	}
+
+	public void testRecurse2(){
+		println ([["A","B","C"],["a","b"]])
+		println Plist.recurse([["A","B","C"],["a","b"]])
+		assert Plist.recurse([["A","B","C"],["a","b"]]) == "baCBA"
+	}
 }

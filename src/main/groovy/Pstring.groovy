@@ -10,13 +10,8 @@ public class Pstring{
 	ArrayList<String> listOfPstring
 
 
-
-
-
 	public ArrayList<String> generateList(String scheme){
-		//StringBuffer res
-		//ArrayList<String> toReturn = new ArrayList<String>()
-		Plist<String> toReturn = new Plist<String>()
+		ArrayList listOfVariations= new ArrayList() 
 		def firstMatcher
 		while(scheme.length()>0){
 			def res= scheme =~ /^\d+/
@@ -24,35 +19,75 @@ public class Pstring{
 				firstMatcher = res.getAt(0) 
 				Integer number=Integer.parseInt(firstMatcher)	
 				scheme=scheme.replace(firstMatcher,"")
-				//toReturn.addAll(variationNumber(number,5))	
-				toReturn.mix(variationNumber(number,5))	
+				listOfVariations.add(variationNumber(number,5))
 			}
 
 			res = (scheme =~ /^[a-zA-Z]+/) 
 			if(res) { 
 				firstMatcher = res.getAt(0) 
 				scheme=scheme.replace(firstMatcher,"")
-				toReturn.mix(variationWord(firstMatcher))	
+				listOfVariations.add(variationWord(firstMatcher))
 			}
-			//println scheme
-			toReturn.mix(variationSpecialChar())
+			listOfVariations.add(variationSpecialChar())
 
 		}
 
 				
-		//TODO
-		return toReturn
-	}
+		//return toReturn
+		return listOfVariations
+	}	
 
 	public static void main(String[] args){
 		Pstring p=new Pstring()
 		def file=new File('src/main/ressources/in.txt')
-		ArrayList<String> list = new ArrayList<String>()
-		file.eachLine{ String it ->  list.add(p.generateList(it)) }
+		ArrayList list = new ArrayList()
+		//file.eachLine{ String it ->  list.add(p.generateList(it)) }
+		file.eachLine{ String it -> list=p.generateList(it) }
 		println list
 		println list.size()
+		//p.persist(list)
+	}
+
+	public void persist(List listOfVariations){
+		def file=new File('src/main/ressources/out.txt')
+			
+		
+	}
+
+	public static List<String> mix(List<String> l1, List<String> list2){
+
+		if(l1.size()==0){
+			l1.addAll(list2)
+		}else {
+
+			List<String> toReturn = new ArrayList<String>()
+			l1.each(){ String it1 ->
+				list2.each(){ String it2 ->
+					toReturn.add(it1 + it2)
+				}	
+
+			}
+			l1.clear()
+			return(toReturn);
+		}
 	}
 	
+	public static void launcher(ArrayList<String> l){
+		
+		while(l.size()>0){
+			println "-->"+l
+			mix(l.pop(),l)
+		}
+	
+	}
+
+
+
+
+
+
+
+
 	public List<String> variationNumber(Integer number,variation){
 		ArrayList<String> toReturn = new ArrayList<String>() 
 		for(int  i=number; i < number+variation; i++){
@@ -65,7 +100,8 @@ public class Pstring{
 		ArrayList<String> toReturn = new ArrayList<String>() 
 		toReturn.add(word)
 		toReturn.add(capitalize(word))
-		toReturn.add(word.toUpperCase())
+		if(word.length()>1)
+			toReturn.add(word.toUpperCase())
 		return toReturn 
 	}
 
