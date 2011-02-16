@@ -44,9 +44,37 @@ class PlistTest extends GroovyTestCase{
 		println Plist.recurse(["A","B","C"])
 	}
 
-	public void testRecurse2(){
-		println ([["A","B","C"],["a","b"]])
-		println Plist.recurse([["A","B","C"],["a","b"]])
-		assert Plist.recurse([["A","B","C"],["a","b"]]) == "baCBA"
+//	public void testRecurse2(){
+//		println ([["A","B","C"],["a","b"]])
+//		println Plist.recurse([["A","B","C"],["a","b"]])
+//		assert Plist.recurse([["A","B","C"],["a","b"]]) == "baCBA"
+//	}
+	
+	public void testDoStuff(){
+		Plist<String> p= new Plist()
+		Plist<String> r= new Plist()
+		ArrayList<String> a= new ArrayList<String>()
+		ArrayList<String> b= new ArrayList<String>()
+		ArrayList<String> c= new ArrayList<String>()
+		a.add("a")
+		a.add("b")
+		a.add("c")
+		b.add("1")
+		b.add("2")
+		b.add("3")
+		c.add("A")
+		c.add("B")
+		c.add("C")
+		/*p.add(["a","b","c"])
+		p.add(["1","2","3"])
+		p.add(["A","B","C"])*/
+		p.add(a)
+		p.add(b)
+		p.add(c)
+		println p
+		r.doStuff(p);
+		println r
+		assert r.size() == 27
+
 	}
 }

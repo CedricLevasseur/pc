@@ -28,8 +28,8 @@ class PstringTest extends GroovyTestCase{
 	}
 	
 	public void testMix(){
-	assert Pstring.mix(["a","b"],["1","2"])	== ["a1", "a2", "b1", "b2"]
-	assert Pstring.mix(Pstring.mix(["a","b"],["1","2"]),["A","B"])	== ["a1A", "a1B", "a2A", "a2B", "b1A", "b1B", "b2A", "b2B"] 
+	//assert Pstring.mix(["a","b"],["1","2"])	== ["a1", "a2", "b1", "b2"]
+	//assert Pstring.mix(Pstring.mix(["a","b"],["1","2"]),["A","B"])	== ["a1A", "a1B", "a2A", "a2B", "b1A", "b1B", "b2A", "b2B"] 
 	assert Pstring.launcher([["a","b"],["1","2"],["A","B"]])== ["a1A", "a1B", "a2A", "a2B", "b1A", "b1B", "b2A", "b2B"] 
 	}
 

@@ -1,7 +1,23 @@
 public class Plist extends ArrayList{
 
 
-public void mix(ArrayList<String> list2){
+	public Plist(){
+		super()
+	}
+
+	public Plist(Object o){
+		this.add(o)
+	}
+	
+	public static Plist toPlist(ArrayList a){
+		Plist p=new Plist();
+		p.addAll(a);
+		return p;
+	}	
+	
+	
+
+	public void mix(ArrayList<String> list2){
 
 		if(this.size()==0){
 			this.addAll(list2)
@@ -100,7 +116,14 @@ public void mix(ArrayList<String> list2){
 	
 	}
 
-	
+	public void doStuff(List<String> list){
+		println "call $list"
+		if(list.size()>0){
+			ArrayList<String> left=list.pop()
+			this.mix(left)
+			this.doStuff(list)
+		}
+	} 	
 
 
 

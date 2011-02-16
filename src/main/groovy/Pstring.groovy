@@ -43,13 +43,19 @@ public class Pstring{
 		ArrayList list = new ArrayList()
 		//file.eachLine{ String it ->  list.add(p.generateList(it)) }
 		file.eachLine{ String it -> list=p.generateList(it) }
-		println list
+		Plist<String> r=new Plist<String>()
+		r.doStuff(list)
+		println r.size()
 		println list.size()
-		//p.persist(list)
+		p.persist(r)
 	}
 
-	public void persist(List listOfVariations){
+	public void persist(Plist result){
 		def file=new File('src/main/ressources/out.txt')
+		//file.withWriter('ISO8859-1')text(result)
+		result.each(){
+			file << it+'\n'
+		}
 			
 		
 	}
@@ -58,18 +64,18 @@ public class Pstring{
 
 		if(l1.size()==0){
 			l1.addAll(list2)
-		}else {
-
-			List<String> toReturn = new ArrayList<String>()
-			l1.each(){ String it1 ->
-				list2.each(){ String it2 ->
-					toReturn.add(it1 + it2)
-				}	
-
-			}
-			l1.clear()
-			return(toReturn);
 		}
+		println "l1="+l1
+		List<String> toReturn = new ArrayList<String>()
+		l1.each(){ String it1 ->
+			list2.each(){ String it2 ->
+				toReturn.add(it1 + it2)
+			}	
+
+		}
+		l1.clear()
+		return(toReturn);
+
 	}
 	
 	public static void launcher(ArrayList<String> l){
@@ -80,6 +86,7 @@ public class Pstring{
 		}
 	
 	}
+	
 
 
 
