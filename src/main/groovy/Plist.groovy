@@ -43,60 +43,6 @@ public class Plist extends ArrayList{
 	}
 
 
-
-
-
-
-	public String  magiMix(StringBuffer toReturn, int indexArray, int indexPos ){
-		
-		if(indexPos > this.getAt(indexArray).size)
-			 
-		if(indexArray > this.size)
-			return toReturn; 
-		if(!(this.first() instanceof List)){
-			return magiMix(toReturn + this.pop())
-		} 
-
-	}
-
-
-	public void magimix(Object o, List list, def function){
-		if(o instanceof List){
-			o.each(){ it->
-				magimix(it,list,function)
-			}
-		}else{
-			list.each(){
-				
-			}
-		}
-	}
-/*
-	public void magimix(List l1, List l2, def f){
-		if(l2 == null)
-			l2=l1.pop()
-			magimix(l1,l2,f)
-		if(l2.last() instanceof List){
-			l2.each(){
-				magimix(l1,it,f)
-			}
-		}else{
-			f(
-		}
-	
-	}
-
-
-	public void magimix(List l,def func){
-		l.pop().each(){
-			this.each(){
-				it + magimix() l	
-			}
-	}
-
-	}
-
-*/
 	public static String recurse(List l)
 	{
 		if(l.size()>0)
@@ -116,8 +62,11 @@ public class Plist extends ArrayList{
 	
 	}
 
+	public void generateList(List<String> list){
+		doStuff(list.reverse())
+	}
+
 	public void doStuff(List<String> list){
-		println "call $list"
 		if(list.size()>0){
 			ArrayList<String> left=list.pop()
 			this.mix(left)

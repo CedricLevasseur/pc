@@ -1,16 +1,17 @@
 import Plist
 public class Pstring{
 
+	private static String  inputFilename= "src/main/ressources/in.txt"
+	private static String outputFilename= "src/main/ressources/out.txt"
+
 	public static Integer VARIATION_NUMBER = 5
 
 	public static String[] specialChar=['','!','%','$','*','@','#']
-	//public static String[] specialChar=['','a','b','c','d','e','f']
-	//public static String[] specialChar=["a"]
 
 	ArrayList<String> listOfPstring
 
 
-	public ArrayList<String> generateList(String scheme){
+	public ArrayList<String> generateVariations(String scheme){
 		ArrayList listOfVariations= new ArrayList() 
 		def firstMatcher
 		while(scheme.length()>0){
@@ -39,60 +40,25 @@ public class Pstring{
 
 	public static void main(String[] args){
 		Pstring p=new Pstring()
-		def file=new File('src/main/ressources/in.txt')
+		def file=new File(inputFilename)
 		ArrayList list = new ArrayList()
+		println ("processing from "+inputFilename)
 		//file.eachLine{ String it ->  list.add(p.generateList(it)) }
-		file.eachLine{ String it -> list=p.generateList(it) }
+		file.eachLine{ String it -> list=p.generateVariations(it) }
 		Plist<String> r=new Plist<String>()
-		r.doStuff(list)
-		println r.size()
-		println list.size()
+		r.generateList(list)
+		//r.doStuff(list.reverse())
 		p.persist(r)
 	}
 
 	public void persist(Plist result){
-		def file=new File('src/main/ressources/out.txt')
-		//file.withWriter('ISO8859-1')text(result)
+		def file=new File(outputFilename)
+		file.text='' //erase the file
 		result.each(){
 			file << it+'\n'
 		}
-			
-		
+		println (result.size()+" words written to "+outputFilename)
 	}
-
-	public static List<String> mix(List<String> l1, List<String> list2){
-
-		if(l1.size()==0){
-			l1.addAll(list2)
-		}
-		println "l1="+l1
-		List<String> toReturn = new ArrayList<String>()
-		l1.each(){ String it1 ->
-			list2.each(){ String it2 ->
-				toReturn.add(it1 + it2)
-			}	
-
-		}
-		l1.clear()
-		return(toReturn);
-
-	}
-	
-	public static void launcher(ArrayList<String> l){
-		
-		while(l.size()>0){
-			println "-->"+l
-			mix(l.pop(),l)
-		}
-	
-	}
-	
-
-
-
-
-
-
 
 
 	public List<String> variationNumber(Integer number,variation){
